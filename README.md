@@ -212,6 +212,25 @@ Requires a C++17 compiler.
 - The static helpers do not emit a trailing empty field after a final
   delimiter (see API reference).
 
+## Examples
+
+[`examples/demo.cc`](examples/demo.cc) is a runnable tour. A top-level CMake build
+produces it next to the test:
+
+```sh
+cmake -B build && cmake --build build && ./build/split_demo
+```
+
+It iterates a `Split` with range-for so you can see each field is a
+`std::string_view` into the source (no copies), fills a `std::vector` in one call
+with the static helper, and contrasts the two delimiter modes on the same input:
+`split("a::b::c", "::")` treats `"::"` as a whole delimiter (three fields), while
+`split_first_of("a::b::c", "::")` treats it as a character set (a single `:`,
+yielding the empty fields between the colons). It then splits on a real
+multi-character set (`,` or `;`), shows `skip_blank` dropping versus keeping empty
+fields on `"a,,b,"`, and uses the iterator's `last()` to join a path without a
+trailing separator.
+
 ## Provenance
 
 Extracted from [Xapiand](https://github.com/Kronuz/Xapiand).

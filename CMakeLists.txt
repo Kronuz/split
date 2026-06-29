@@ -12,4 +12,8 @@ if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
   add_executable(split_test test/test.cc)
   target_link_libraries(split_test PRIVATE split)
   add_test(NAME split COMMAND split_test)
+
+  # A runnable tour of the library (not a test): build & run ./build/split_demo
+  add_executable(split_demo examples/demo.cc)
+  target_link_libraries(split_demo PRIVATE split)
 endif()
