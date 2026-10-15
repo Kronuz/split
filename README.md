@@ -1,5 +1,7 @@
 # split
 
+[![CI](https://github.com/Kronuz/split/actions/workflows/ci.yml/badge.svg)](https://github.com/Kronuz/split/actions/workflows/ci.yml)
+
 A tiny, header-only string splitter for C++17.
 
 ## What it is
