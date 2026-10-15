@@ -23,6 +23,7 @@
 #pragma once
 
 #include <cassert>                                // for assert
+#include <cstdint>                                // for uint8_t
 #include <string>                                 // for std::string
 #include <string_view>                            // for std::string_view
 
