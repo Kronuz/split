@@ -1,0 +1,23 @@
+# split: one pass over the string, each field a view into it.
+# Render: d2 --layout elk --sketch --theme 302 docs/split.d2 docs/split.svg
+direction: right
+
+source: '"alpha,beta,gamma"' {
+  label: "\"alpha,beta,gamma\"\n(copied once into the Split)"
+}
+
+fields: fields {
+  a: '"alpha"'
+  b: '"beta"'
+  c: '"gamma"'
+  label: "std::string_view fields\nno allocation"
+}
+
+out: vector {
+  label: "or: Split<>::split(…, back_inserter(v))\nfills a container"
+}
+
+source -> fields.a
+source -> fields.b
+source -> fields.c
+source -> out {style.stroke-dash: 3}

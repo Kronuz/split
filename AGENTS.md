@@ -8,9 +8,11 @@ Notes for agents and contributors working in this repo.
   private input `Iterator`. Header-only.
 - `test/test.cc` — smoke test exercising the static helper, `skip_blank`, and
   the iterator form.
-- `CMakeLists.txt` — defines the `split` `INTERFACE` target and a `ctest` test.
+- `CMakeLists.txt` — defines the `split` `INTERFACE` target (alias `split::split`) and a `ctest` test.
 - `LICENSE` — MIT, Copyright (c) 2015-2019 Dubalu LLC.
-- `README.md` — usage and API reference.
+- `README.md` — what it is, install, quick start.
+- `docs/API.md` — the API reference and caveats; `docs/split.d2` is the README
+  diagram's source.
 - `ARCHITECTURE.md` — internal design (dispatch, iterator, skip_blank).
 
 ## Build & run the test

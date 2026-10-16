@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.14)
 project(split LANGUAGES CXX)
 
 add_library(split INTERFACE)
+add_library(split::split ALIAS split)
 target_include_directories(split INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
 target_compile_features(split INTERFACE cxx_std_17)
 
