@@ -12,10 +12,9 @@ Notes for agents and contributors working in this repo.
   memchr and `string_view::find` loops and, when abseil is found, `absl::StrSplit`. The comparators
   are never a dependency of the library target. `--check` runs the result checks only (a ctest).
 - `CMakeLists.txt` — defines the `split` `INTERFACE` target (alias `split::split`) and a `ctest` test.
-- `LICENSE` — MIT, Copyright (c) 2015-2019 Dubalu LLC.
+- `LICENSE` — MIT, Copyright (c) 2026 Germán Méndez Bravo and (c) 2015-2020 Dubalu LLC.
 - `README.md` — what it is, install, quick start.
-- `docs/API.md` — the API reference and caveats; `docs/split.d2` is the README
-  diagram's source.
+- `docs/API.md` — the API reference and caveats.
 - `ARCHITECTURE.md` — internal design (dispatch, iterator, skip_blank).
 
 ## Build & run the test
