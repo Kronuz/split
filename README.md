@@ -95,12 +95,16 @@ Not for:
 
 ## ⚡ Performance
 
-`bench/compare.cc` times `Split` against hand-written loops (`memchr` for a
-character, `string_view::find` for `"::"`, `find_first_of` for `",;"`) and
-`absl::StrSplit`, on comma-separated text of 1 to 15 character fields, one in
-ten of them empty. Both sides return the same fields, checked before each row is
-timed. Time per call, the best of seven samples of at least 8 ms; `-O3`, Apple
-clang 17, abseil 20260817.0:
+Time per call to split comma-separated text of 1 to 15 character fields, one in ten of them
+empty: the best of seven samples of at least 8 ms from `bench/compare.cc`, in ns (µs where marked).
+Each cell reads *`Split` / hand loop / `absl`*. `Split` is this library. *Hand loop* is the code you
+would write without it: a `memchr` loop for one character, a `string_view::find` loop for `"::"`,
+a `find_first_of` loop for `",;"`. *`absl`* is `absl::StrSplit` (`absl::ByAnyChar` for `",;"`) from
+[abseil 20260817.0](https://github.com/abseil/abseil-cpp/tree/20260817.0), the library most C++
+code reaches for. `split()` and `split_first_of()` return a vector of views; the iterator rows walk
+the fields with `Split<std::string_view>` or `Split<std::string>` (which copies its source) against
+loops and `absl` iteration that build no vector. Before it times a row, the bench checks that
+all three return the same fields. `-O3`, Apple clang 17:
 
 | workload | Apple M4 Pro: `Split` / hand loop / absl | Intel Core i9-9980HK: `Split` / hand loop / absl |
 |---|---:|---:|
