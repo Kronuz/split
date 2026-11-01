@@ -8,6 +8,9 @@ Notes for agents and contributors working in this repo.
   private input `Iterator`. Header-only.
 - `test/test.cc` — smoke test exercising the static helper, `skip_blank`, and
   the iterator form.
+- `bench/compare.cc` — comparison benchmark (`-DSPLIT_BUILD_BENCH=ON`, Release): `Split` against
+  memchr and `string_view::find` loops and, when abseil is found, `absl::StrSplit`. The comparators
+  are never a dependency of the library target. `--check` runs the result checks only (a ctest).
 - `CMakeLists.txt` — defines the `split` `INTERFACE` target (alias `split::split`) and a `ctest` test.
 - `LICENSE` — MIT, Copyright (c) 2015-2019 Dubalu LLC.
 - `README.md` — what it is, install, quick start.

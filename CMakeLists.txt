@@ -17,4 +17,22 @@ if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
   # A runnable tour of the library (not a test): build & run ./build/split_demo
   add_executable(split_demo examples/demo.cc)
   target_link_libraries(split_demo PRIVATE split)
+
+  # Comparison benchmark (not run by ctest): split against memchr and find loops and, when abseil
+  # is installed, absl::StrSplit. The comparator is optional and never a dependency of the
+  # library target. With the option on, the program also runs in `--check` mode under ctest
+  # (results, no timing). Configure with -DCMAKE_BUILD_TYPE=Release.
+  option(SPLIT_BUILD_BENCH "Build bench/compare.cc" OFF)
+  if(SPLIT_BUILD_BENCH)
+    find_package(absl QUIET)
+    add_executable(split_compare bench/compare.cc)
+    target_link_libraries(split_compare PRIVATE split)
+    # Split's iterator derives from std::iterator, which C++17 deprecates.
+    target_compile_options(split_compare PRIVATE -Wno-deprecated-declarations)
+    if(absl_FOUND)
+      target_compile_definitions(split_compare PRIVATE HAVE_ABSL=1)
+      target_link_libraries(split_compare PRIVATE absl::strings)
+    endif()
+    add_test(NAME split_compare COMMAND split_compare --check)
+  endif()
 endif()
