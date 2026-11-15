@@ -131,6 +131,8 @@ at 1 KB, 1.9x at 64 bytes.
 
 ## 📚 Documentation
 
+- [The Bag of Holding](https://kronuz.github.io/blog/bag-of-holding/):
+  the Familiars post that covers `split` among the small helpers.
 - [docs/API.md](docs/API.md): constructors, the four modes, iterators, the static
   helpers, and caveats (including the `SKIP_BLANK_*` names, which keep blanks).
 - [ARCHITECTURE.md](ARCHITECTURE.md): the search dispatch, the lazy iterator and
